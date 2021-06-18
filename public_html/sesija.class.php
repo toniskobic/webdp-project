@@ -34,19 +34,21 @@ class Sesija {
     const ULOGA = "uloga"; // konstanta uloga
     const KOSARICA = "kosarica";
     const SESSION_NAME = "prijava_sesija";
+    const ID = "ID";
 
     static function kreirajSesiju() {
          if (session_id() == "") {
             session_name(self::SESSION_NAME);
-            //session_save_path("/tmp");
+            session_save_path("/tmp");
             session_start();
         }
     }
 
-    static function kreirajKorisnika($korisnik, $uloga = 4) { // prosljedujemo ulogu korisnika
+    static function kreirajKorisnika($korisnik, $uloga = 3, $id) { // prosljedujemo ulogu korisnika
         self::kreirajSesiju();
         $_SESSION[self::KORISNIK] = $korisnik;
         $_SESSION[self::ULOGA] = $uloga;
+        $_SESSION[self::ID] = $id;
     }
 
     static function kreirajKosaricu($kosarica) {

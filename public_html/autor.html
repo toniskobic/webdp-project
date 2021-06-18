@@ -12,6 +12,10 @@
             content="11.6.2021. Stranica O autoru web stranice, ključne riječi: autor, rođendan"
         />
         <link rel="stylesheet" href="./css/main.css" />
+        <link
+            rel="alternate stylesheet"
+            href="./css/main_accesibility.css"
+        />
     </head>
 
     <body>
@@ -20,37 +24,28 @@
             <nav class="box-fluid navigation">
                 <ul class="list--unstyled list--direction">
                     <li>
-                        <a href="./index.html">Početna</a>
+                        <a href="./index.php">Početna</a>
                     </li>
                     <li>
-                        <a href="./author.php">O autoru</a>
+                        <a href="./autor.html">O autoru</a>
                     </li>
                     <li>
-                        <a href="./login.php">Prijava</a>
-                    </li>
-                    <li>
-                        <a href="./registration.html">Registracija</a>
+                        <a href="./dokumentacija.html">Dokumentacija</a>
                     </li>
                 </ul>
             </nav>
 
-            <section aria-label="social networks" class="social-icons">
-                <img
-                    class="social-icon m-l-sm"
-                    src="./multimedia/images/rss.png"
-                    alt="rss"
-                />
-            </section>
         </header>
         <main id="content">
             <section aria-label="about author" class="box centered">
-                <ul class="list--unstyled">
+                <ul class="list--unstyled list--vertical">
                     <li>Ime: Toni</li>
                     <li>Prezime: Škobić</li>
+                    <li>***REMOVED***</li>
                     <li>
                         <address>
                             E-pošta:
-                            <a href="mailto:tskobic@foi.hr">tskobic@foi.hr</a>
+                            <a class="link "href="mailto:tskobic@foi.hr">tskobic@foi.hr</a>
                         </address>
                     </li>
                 </ul>
@@ -69,11 +64,13 @@
 
             </section>
         </main>
+        <div class="accesibility">Pristupačnost</div>
         <footer class="box-fluid footer m-t-md">
             <div>
-                <a href="./author.html">Toni Škobić</a>
+                <a href="./autor.html">Toni Škobić</a>
                 <p>&copy; 2021 T. Škobić</p>
             </div>
         </footer>
+        <script src="./javascript/main.js"></script>
     </body>
 </html>

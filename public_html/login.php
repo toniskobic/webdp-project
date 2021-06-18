@@ -1,18 +1,16 @@
 <?php
-$putanja = dirname($_SERVER['REQUEST_URI']);
-$direktorij = getcwd();
-require "$direktorij/baza.class.php";
-require "$direktorij/sesija.class.php";
 
-Sesija::kreirajSesiju();
-
-/*
 if(!isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on")
 {
     header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
     exit;
 }
-*/
+
+require "./baza.class.php";
+require "./sesija.class.php";
+
+Sesija::kreirajSesiju();
+
 
 $username = '';
 
@@ -63,6 +61,14 @@ if (isset($_GET['submit'])) {
         }
 
         if ($autenticiran) {
+
+            $datetime = date('Y-m-d H:i:s');
+
+            $query = "INSERT INTO `dnevnik`(`dnevnik_id`, `tip_id`, `korisnik_id`, `radnja`, `upit`, `datum_vrijeme`) "
+                    ."VALUES (NULL , 1, {$id}, 'Uspješna prijava' , 'UPDATE', '{$datetime}')";
+
+            $rezultat = $veza->updateDB($query);
+
             $poruka = 'Uspješna prijava!';
 
             $upit = "UPDATE `korisnik` SET "
@@ -75,10 +81,9 @@ if (isset($_GET['submit'])) {
                 setcookie("autenticiran", $korime, false, '/', false);
             }
 
-            Sesija::kreirajKorisnika($korime, $tip);
+            Sesija::kreirajKorisnika($korime, $tip, $id);
 
-            header("Location: ./index.html");
-
+            header("Location: ./index.php");
         } else {
             $upit = "UPDATE `korisnik` SET "
                 . "`broj_neuspjesnih_prijava` = (broj_neuspjesnih_prijava + 1)"
@@ -130,6 +135,7 @@ if (isset($_GET['submit'])) {
     <meta name="author" content="Toni Škobić" />
     <meta name="description" content="11.6.2021. Stranica Prijava na web stranicu, ključne riječi: prijava, rođendan, novosti" />
     <link rel="stylesheet" href="./css/main.css" />
+    <link rel="alternate stylesheet" href="./css/main_accesibility.css" />
 </head>
 
 <body>
@@ -139,12 +145,9 @@ if (isset($_GET['submit'])) {
         include './menu.php';
         ?>
 
-        <section aria-label="social networks" class="social-icons">
-            <img class="social-icon m-l-sm" src="./multimedia/images/rss.png" alt="rss" />
-        </section>
     </header>
     <main id="content">
-        <form novalidate id="prijava" class="form centered" method="get" action="">
+        <form novalidate id="prijava" class="form centered tutorial" method="get" action="">
             <div id="greska" style="color:red">
                 <?php
                 if (isset($autenticiran)) {
@@ -154,12 +157,31 @@ if (isset($_GET['submit'])) {
                 }
                 ?>
             </div>
-            <label for="username">Korisničko ime:</label>
-            <input type="text" name="username" id="username" value="<?php echo $username ?>" />
 
+            <div class="flex input-section">
+                <label for="username">Korisničko ime:</label>
+                <input type="text" name="username" id="username" value="<?php echo $username ?>" />
+                <div class="tooltip">
+                    <span class="help"> Pomoć </span>
+                    <div class="help-message hidden">
+                        Ovdje se unosi korisničko ime
+                        <span class="next-button"> Dalje </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex input-section">
             <label for="password">Lozinka:</label>
             <input type="password" name="password" id="password" />
-
+            <div class="tooltip hidden">
+                    <span class="help"> Pomoć </span>
+                    <div class="help-message hidden">
+                        Ovdje se unosi korisničko ime
+                        <span class="next-button"> Dalje </span>
+                    </div>
+                </div>
+            </div
+            >
             <a class="link--default m-b-sm" href="./restore_password.php">Zaboravljena lozinka?</a>
 
             <div>
@@ -173,12 +195,14 @@ if (isset($_GET['submit'])) {
         </form>
 
     </main>
+    <div class="accesibility">Pristupačnost</div>
     <footer class="box-fluid footer m-t-md">
         <div>
             <a href="./author.html">Toni Škobić</a>
             <p>&copy; 2021 T. Škobić</p>
         </div>
     </footer>
+    <script src="./javascript/main.js"></script>
 </body>
 
 </html>

@@ -80,9 +80,9 @@ h1 {
     height: -moz-fit-content;
 }
 
-input[type="text"]:not(.datetime) {
+/*input[type="text"]:not(.datetime) {
     background-color: var(--secondary-color);
-}
+}*/
 
 @media screen and (min-width: 1921px) {
     body {
@@ -90,8 +90,6 @@ input[type="text"]:not(.datetime) {
         font-family: Arial;
     }
 }
-
-
 
 :root {
     --primary-color: #111;
@@ -248,7 +246,7 @@ footer {
     margin-bottom: 1.2rem;
     width: 80%;
     max-width: 250px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .form > input {
@@ -298,6 +296,10 @@ footer {
 
 .list--direction > li:not(:last-child) {
     margin-right: 2rem;
+}
+
+.list--vertical > li {
+    margin-bottom: var(--gap-xs);
 }
 
 .navigation {
@@ -570,7 +572,6 @@ footer {
         font-size: 25px;
         color: var(--font-primary-color);
     }
-    
 }
 
 .unstyled-button:hover {
@@ -579,7 +580,6 @@ footer {
     background: none;
     cursor: pointer;
     color: var(--secondary-color);
-    
 }
 
 .zoom {
@@ -616,4 +616,13 @@ footer {
 
 .link--default:visited {
     color: blue;
+}
+
+.link--button-type {
+    position: relative;
+    left: 15%;
+}
+
+.button--primary:visited {
+    color: var(--font-secondary-color);
 }

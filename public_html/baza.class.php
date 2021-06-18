@@ -2,17 +2,17 @@
 
 class Baza {
 
-    /*
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-    */
     
     ***REMOVED***
     ***REMOVED***
     ***REMOVED***
     ***REMOVED***
+    
+    
+    // ***REMOVED***
+    // ***REMOVED***
+    // ***REMOVED***
+    // ***REMOVED***
 
     private $veza = null;
     private $greska = '';

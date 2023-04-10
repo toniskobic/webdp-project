@@ -3,16 +3,10 @@
 class Baza {
 
     
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-    
-    
-    // ***REMOVED***
-    // ***REMOVED***
-    // ***REMOVED***
-    // ***REMOVED***
+    const server = "";
+    const korisnik = "";
+    const lozinka = "";
+    const baza = "";
 
     private $veza = null;
     private $greska = '';
